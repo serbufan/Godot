@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://binx4rue6gsqu"]
+
+[ext_resource type="Texture2D" uid="uid://bso65ab78eqlc" path="res://sokoban_tilesheet.png" id="1_0wmhh"]
+[ext_resource type="Script" path="res://Player.cs" id="1_exyqj"]
+
+[sub_resource type="Animation" id="Animation_ch4rh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(192, 320, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_csqxw"]
+resource_name = "down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 320, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_7pjht"]
+resource_name = "left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(192, 448, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_mndcf"]
+resource_name = "right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 448, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_j0lih"]
+resource_name = "up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(192, 320, 64, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qo0yu"]
+_data = {
+"RESET": SubResource("Animation_ch4rh"),
+"down": SubResource("Animation_csqxw"),
+"left": SubResource("Animation_7pjht"),
+"right": SubResource("Animation_mndcf"),
+"up": SubResource("Animation_j0lih")
+}
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_exyqj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0wmhh")
+region_enabled = true
+region_rect = Rect2(192, 320, 64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_qo0yu")
+}

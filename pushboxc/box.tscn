@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmd08rpsvbqvh"]
+
+[ext_resource type="Texture2D" uid="uid://bso65ab78eqlc" path="res://sokoban_tilesheet.png" id="1_20lpe"]
+[ext_resource type="Script" path="res://Box.cs" id="1_pkerq"]
+
+[sub_resource type="Animation" id="Animation_kx676"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(64, 0, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_38y68"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(64, 64, 64, 64)]
+}
+
+[sub_resource type="Animation" id="Animation_f1fr8"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(64, 0, 64, 64)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xk8ns"]
+_data = {
+"RESET": SubResource("Animation_kx676"),
+"hide": SubResource("Animation_38y68"),
+"show": SubResource("Animation_f1fr8")
+}
+
+[node name="box" type="Node2D" groups=["Boxs"]]
+script = ExtResource("1_pkerq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_20lpe")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xk8ns")
+}
